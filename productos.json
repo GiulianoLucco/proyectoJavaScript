@@ -1,0 +1,62 @@
+[{
+    "nombre":"Destornillador",
+    "marca":"Makita",
+    "precio":"500",
+    "stock":100
+},
+{
+    "nombre":"Taladro",
+    "marca":"Stanley",
+    "precio":"2500",
+    "stock":50
+},
+{
+    "nombre":"Hidrolavadora",
+    "marca":"Ducati",
+    "precio":"10000",
+    "stock":10
+},
+{
+    "nombre":"Maquina de soldar",
+    "marca":"Duca",
+    "precio":"4500",
+    "stock":15
+},
+{
+    "nombre":"Maquina de soldar Mic",
+    "marca":"Fema",
+    "precio":"5600",
+    "stock":150
+},
+{
+    "nombre":"Juego de pinzas",
+    "marca":"Stanley",
+    "precio":"1400",
+    "stock":40
+},
+{
+    "nombre":"Martillo",
+    "marca":"Duca",
+    "precio":"250",
+    "stock":500
+},
+{
+    "nombre":"Taladro electrico",
+    "marca":"Ducati",
+    "precio":"3500",
+    "stock":300
+},
+{
+    "nombre":"Juego de llaves",
+    "marca":"Stanley",
+    "precio":"3600",
+    "stock":10
+},
+{
+    "nombre":"Destornillador Electrico",
+    "marca":"Fema",
+    "precio":"2600",
+    "stock":35
+}
+
+]

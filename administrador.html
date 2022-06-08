@@ -15,7 +15,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/index.html">Ferrimac</a>
+        <a class="navbar-brand" href="./index.html">Ferrimac</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
           aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -29,12 +29,48 @@
     </nav>
   </header>
   <div id="contenido" class="contenido">
-    <div class="botonesIndex">
-    <a href="./administrador.html"><button class="btnIndex">Ingresar como Administrador</button></a>
-    <a href="./cliente.html"><button class="btnIndex">Ingresar como cliente</button></a>
+
+
+    <h1>Agregar Producto</h1>
+    <form id="formulario">
+
+      <div class="mb-3">
+        <label for="idNombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" id="idNombre">
+      </div>
+      <div class="mb-3">
+        <label for="idMarca" class="form-label">Marca</label>
+        <input type="text" class="form-control" name="marca" id="idMarca">
+      </div>
+      <div class="mb-3">
+        <label for="idPrecio" class="form-label">Precio</label>
+        <input type="number" class="form-control" name="precio" id="idPrecio">
+      </div>
+      <div class="mb-3">
+        <label for="idStock" class="form-label">Stock</label>
+        <input type="number" class="form-control" name="stock" id="idStock">
+      </div>
+      
+      <button type="submit" class="btn btn-dark">Agregar Producto</button>
+    </form><br><br>
+    <div class="botones">      
+    <button id="btnLista" class="btn btn-danger">Lista de Productos</button>
+    <button id="btnMarca" class="btn btn-danger">Listado por Marca</button>
+    <br><br>
   </div>
+  <br>
+    <h1>Listado de Productos</h1><br><br>
+    <div id="listProductos">
+
+    </div>
+    <div id="listMarca">
+      
+    </div>
+
+  </div>
+
   <footer>
-    
+
     <ul class="redes">
       <li><i class="bi bi-facebook"></i> Facebook </li>
       <li><i class="bi bi-instagram"></i> Instagram</li>
@@ -49,7 +85,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>
-  
+  <script src="./script.js"></script>
 
 </body>
 

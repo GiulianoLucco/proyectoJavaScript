@@ -1,62 +1,83 @@
 [{
-    "nombre":"Destornillador",
-    "marca":"Makita",
-    "precio":"500",
-    "stock":100
-},
-{
-    "nombre":"Taladro",
-    "marca":"Stanley",
-    "precio":"2500",
-    "stock":50
-},
-{
-    "nombre":"Hidrolavadora",
-    "marca":"Ducati",
-    "precio":"10000",
-    "stock":10
-},
-{
-    "nombre":"Maquina de soldar",
-    "marca":"Duca",
-    "precio":"4500",
-    "stock":15
-},
-{
-    "nombre":"Maquina de soldar Mic",
-    "marca":"Fema",
-    "precio":"5600",
-    "stock":150
-},
-{
-    "nombre":"Juego de pinzas",
-    "marca":"Stanley",
-    "precio":"1400",
-    "stock":40
-},
-{
-    "nombre":"Martillo",
-    "marca":"Duca",
-    "precio":"250",
-    "stock":500
-},
-{
-    "nombre":"Taladro electrico",
-    "marca":"Ducati",
-    "precio":"3500",
-    "stock":300
-},
-{
-    "nombre":"Juego de llaves",
-    "marca":"Stanley",
-    "precio":"3600",
-    "stock":10
-},
-{
-    "nombre":"Destornillador Electrico",
-    "marca":"Fema",
-    "precio":"2600",
-    "stock":35
-}
+
+        "nombre": "Aparejo electrico 3161",
+        "marca": ">Modelo Fema 3161",
+        "precio": "2000",
+        "stock": 100,
+        "imagen": "./imagenes/productos/aparejo3161.png"
+    },
+    {
+
+        "nombre": "Aparejo electrico 900",
+        "marca": "Modelo Fema 900",
+        "precio": "2500",
+        "stock": 50,
+        "imagen": "./imagenes/productos/aparejo900.png"
+
+    },
+    {
+
+        "nombre": "Aspiradora 20L",
+        "marca": "Fema",
+        "precio": "3500",
+        "stock": 50,
+        "imagen": "./imagenes/productos/aspiradora20l.png"
+    },
+    {
+
+        "nombre": "Aspiradora 60L",
+        "marca": "Fema",
+        "precio": "4500",
+        "stock": 15,
+        "imagen": "./imagenes/productos/aspiradora60l.png"
+    },
+    {
+
+        "nombre": "Destornillador con criquet",
+        "marca": "Fema",
+        "precio": "1000",
+        "stock": 150,
+        "imagen": "./imagenes/productos/destornillador.png"
+    },
+    {
+
+        "nombre": "Gabinete 8 Cajones",
+        "marca": "Vanguard",
+        "precio": "1400",
+        "stock": 300,
+        "imagen": "./imagenes/productos/gabinete8.png"
+    },
+    {
+
+        "nombre": "Gabinete 9 Cajones",
+        "marca": "Vanguard",
+        "precio": "2000",
+        "stock": 500,
+        "imagen": "./imagenes/productos/gabinete9.png"
+    },
+    {
+
+        "nombre": "Aparejo 8000",
+        "marca": "Fema",
+        "precio": "5000",
+        "stock": 300,
+        "imagen": "./imagenes/productos/aparejo8000.png"
+    },
+    {
+
+        "nombre": "Aspiradora 80L",
+        "marca": "Fema",
+        "precio": "6000",
+        "stock": 5,
+        "imagen": "./imagenes/productos/aspiradora80l.png"
+    },
+    {
+
+        "nombre": "Juego de Pinzas",
+        "marca": "Vanguard",
+        "precio": "500",
+        "stock": 30,
+        "imagen": "./imagenes/productos/juegopinzas.png"
+    }
 
 ]

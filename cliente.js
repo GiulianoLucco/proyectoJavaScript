@@ -1,65 +1,14 @@
-class Producto {
-    constructor(nombre, marca, precio, stock) {
-        
-        this.nombre = nombre
-        this.marca = marca
-        this.precio = precio
-        this.stock = stock
-        
-
-    }
-}
-
-let productos = []
-
-
-
-if (localStorage.getItem('Productos')) {
-    productos = JSON.parse(localStorage.getItem('Productos'))
-} else {
-    localStorage.setItem('Productos', JSON.stringify(productos))
-
-}
 let buscador = document.getElementById('buscador')
-let formulario = document.getElementById('formulario')
 let divProducto = document.getElementById('listProductos')
 let botonProductos = document.getElementById('btnLista')
-let botonMarca = document.getElementById('btnMarca')
-let divMarca = document.getElementById('listMarca')
+const btnCarrito = document.getElementById("btnCarrito")
+const sidebar = document.getElementById("sidebar")
+let agregarCarrito = document.getElementById('agregarCarrito')
 
-formulario.addEventListener('submit', (e) => {
-    e.preventDefault()
 
-    let datForm = new FormData(e.target)
-    const producto = new Producto(datForm.get('nombre'), datForm.get('marca'), datForm.get('precio'), datForm.get('stock'))
-    if (datForm.get('nombre') != "" && datForm.get('marca') != "" && datForm.get('precio') != "" && datForm.get('stock')) {
-
-        console.log(producto)
-        productos.push(producto)
-        console.log(productos)
-        localStorage.setItem('Productos', JSON.stringify(productos))
-        
-        formulario.reset()
-        Toastify({
-
-            text: "Producto agregado",
-
-            duration: 3000
-
-        }).showToast();
-
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Formulario incompleto',
-            footer: 'Completar el formulario de manera completa por favor'
-        })
-    }
-
+btnCarrito.addEventListener('click',(e)=>{
+    productoAgregado.classList.toggle("active")
 })
-
-
 
 let productoTotales =[]
 
@@ -94,3 +43,17 @@ botonProductos.addEventListener('click', () => {
     
 
 })
+
+function agregarProducto(indice){
+    let productosFilter = productoTotales.filter((element, index)=>{
+        
+        return index==indice
+    });
+    console.log(productosFilter);
+
+  let carrito=[]
+  
+}
+    
+    
+     

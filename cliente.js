@@ -1,9 +1,10 @@
 let buscador = document.getElementById('buscador')
 let divProducto = document.getElementById('listProductos')
 let botonProductos = document.getElementById('btnLista')
-const btnCarrito = document.getElementById("btnCarrito")
-const sidebar = document.getElementById("sidebar")
-let agregarCarrito = document.getElementById('agregarCarrito')
+let btnCarrito = document.getElementById('btnCarrito')
+let carritoSidebar = document.getElementById('productoAgregado')
+let btnEliminar =document.getElementById('btnEliminar')
+
 
 
 btnCarrito.addEventListener('click',(e)=>{
@@ -44,16 +45,69 @@ botonProductos.addEventListener('click', () => {
 
 })
 
+let carrito = []
+
+if (localStorage.getItem('Carrito')) {
+    productos = JSON.parse(localStorage.getItem('Carrito'))
+} else {
+    localStorage.setItem('Carrito', JSON.stringify(carrito))
+
+}
+
 function agregarProducto(indice){
     let productosFilter = productoTotales.filter((element, index)=>{
         
         return index==indice
     });
     console.log(productosFilter);
+   
 
-  let carrito=[]
+  carrito.push(productosFilter)
+  localStorage.setItem('Carrito', JSON.stringify(carrito))
   
 }
     
-    
+    console.log(carrito);
      
+
+    btnCarrito.addEventListener('click',()=>{
+        productoAgregado.innerHTML = ""
+        let carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
+        console.log(carritoStorage);
+        carritoStorage.forEach((arrayCarrito)=>{
+            arrayCarrito.forEach((productosCarrito)=>{            
+             let {nombre, marca, precio,stock} = productosCarrito
+             Swal.fire({
+                title:productoAgregado.innerHTML += `
+                <div class="productosCarrito">
+                <ul>
+                    <li>Nombre: ${nombre}</li>
+                    <li>Marca: ${marca}</li>
+                    <li>Precio:$ ${precio}</li>
+                    <li><button id="btnEliminar" class="btnEliminar">Eliminar</button></li>
+              </ul>
+                </div>
+                
+                `,
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Comprar',
+                denyButtonText: `Vaciar Carrito`,
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                  Swal.fire('Compra Realizada', '', 'success')
+                  localStorage.setItem('Carrito', JSON.stringify(""))
+                  productoAgregado.innerHTML = ""
+                } else if (result.isDenied) {
+                  Swal.fire('Seguro que desea vaciar carrito', '', 'info')
+                  localStorage.setItem('Carrito', JSON.stringify(""))
+                  productoAgregado.innerHTML = ""
+                }
+              })
+            
+        })
+        })
+    })
+
+    

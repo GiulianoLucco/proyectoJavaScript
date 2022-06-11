@@ -1,7 +1,7 @@
 [{
 
         "nombre": "Aparejo electrico 3161",
-        "marca": ">Modelo Fema 3161",
+        "marca": "Modelo Fema 3161",
         "precio": "2000",
         "stock": 100,
         "imagen": "./imagenes/productos/aparejo3161.png"

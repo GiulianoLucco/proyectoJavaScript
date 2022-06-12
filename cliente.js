@@ -3,28 +3,28 @@ let divProducto = document.getElementById('listProductos')
 let botonProductos = document.getElementById('btnLista')
 let btnCarrito = document.getElementById('btnCarrito')
 let carritoSidebar = document.getElementById('productoAgregado')
-let btnEliminar =document.getElementById('btnEliminar')
 
 
 
-btnCarrito.addEventListener('click',(e)=>{
-    productoAgregado.classList.toggle("active")
+
+btnCarrito.addEventListener('click', (e) => {
+  productoAgregado.classList.toggle("active")
 })
 
-let productoTotales =[]
+let productoTotales = []
 
 botonProductos.addEventListener('click', () => {
 
-    
-    fetch('productos.json')
+
+  fetch('productos.json')
     .then(response => response.json())
     .then(productos => {
-        let productoStorage = JSON.parse(localStorage.getItem('Productos'))
-         productoTotales = productoStorage.concat(productos)
-        console.log(productoTotales);
-        divProducto.innerHTML = ""
-        productoTotales.forEach((producto,indice)=>{
-            divProducto.innerHTML += `<div class="card border-dark mb-3" style="max-width: 20rem;">
+      let productoStorage = JSON.parse(localStorage.getItem('Productos'))
+      productoTotales = productoStorage.concat(productos)
+      console.log(productoTotales);
+      divProducto.innerHTML = ""
+      productoTotales.forEach((producto, indice) => {
+        divProducto.innerHTML += `<div class="card border-dark mb-3" style="max-width: 20rem;">
                                                
             <div class="card-header"><h4>${producto.nombre}</h4></div>
             <img src="${producto.imagen ? producto.imagen : './imagenes/img.png'}" class="img-fluid" alt="...">                  
@@ -38,76 +38,87 @@ botonProductos.addEventListener('click', () => {
     
              </div>
         </div>`
-            
-        })
+
+      })
     })
-    
+
 
 })
 
 let carrito = []
 
 if (localStorage.getItem('Carrito')) {
-    productos = JSON.parse(localStorage.getItem('Carrito'))
+  productos = JSON.parse(localStorage.getItem('Carrito'))
 } else {
-    localStorage.setItem('Carrito', JSON.stringify(carrito))
+  localStorage.setItem('Carrito', JSON.stringify(carrito))
 
 }
 
-function agregarProducto(indice){
-    let productosFilter = productoTotales.filter((element, index)=>{
-        
-        return index==indice
-    });
-    console.log(productosFilter);
-   
+function agregarProducto(indice) {
+  let productosFilter = productoTotales.filter((element, index) => {
+
+    return index == indice
+  });
+  console.log(productosFilter);
+
 
   carrito.push(productosFilter)
-  localStorage.setItem('Carrito', JSON.stringify(carrito))
-  
-}
-    
-    console.log(carrito);
-     
+  Toastify({
 
-    btnCarrito.addEventListener('click',()=>{
-        productoAgregado.innerHTML = ""
-        let carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
-        console.log(carritoStorage);
-        carritoStorage.forEach((arrayCarrito)=>{
-            arrayCarrito.forEach((productosCarrito)=>{            
-             let {nombre, marca, precio,stock} = productosCarrito
-             Swal.fire({
-                title:productoAgregado.innerHTML += `
+    text: "Producto agregado a carrito",
+
+    duration: 3000
+
+  }).showToast();
+  localStorage.setItem('Carrito', JSON.stringify(carrito))
+
+}
+
+
+btnCarrito.addEventListener('click', () => {
+  productoAgregado.innerHTML = ""
+  let carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
+  carritoStorage.forEach((arrayCarrito) => {
+    
+    arrayCarrito.forEach((productosCarrito, pEliminar) => {
+      let {
+        nombre,
+        marca,
+        precio,
+        stock
+      } = productosCarrito
+      
+      Swal.fire({
+        title:productoAgregado.innerHTML +=  `
                 <div class="productosCarrito">
                 <ul>
                     <li>Nombre: ${nombre}</li>
                     <li>Marca: ${marca}</li>
                     <li>Precio:$ ${precio}</li>
-                    <li><button id="btnEliminar" class="btnEliminar">Eliminar</button></li>
+                    
               </ul>
                 </div>
-                
                 `,
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Comprar',
-                denyButtonText: `Vaciar Carrito`,
-              }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                  Swal.fire('Compra Realizada', '', 'success')
-                  localStorage.setItem('Carrito', JSON.stringify(""))
-                  productoAgregado.innerHTML = ""
-                } else if (result.isDenied) {
-                  Swal.fire('Seguro que desea vaciar carrito', '', 'info')
-                  localStorage.setItem('Carrito', JSON.stringify(""))
-                  productoAgregado.innerHTML = ""
-                }
-              })
-            
-        })
-        })
-    })
 
-    
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Comprar',
+        denyButtonText: `Vaciar Carrito`,
+
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire('Compra Exitosa', '', 'success')
+          localStorage.setItem('Carrito', JSON.stringify(""))
+          productoAgregado.innerHTML = ""
+        } else if (result.isDenied) {
+          Swal.fire('Seguro que desea vaciar carrito', '', 'info')
+          localStorage.setItem('Carrito', JSON.stringify(""))
+          productoAgregado.innerHTML = ""
+        }
+      })
+
+    })
+  })
+})
+

@@ -3,13 +3,10 @@ let divProducto = document.getElementById('listProductos')
 let botonProductos = document.getElementById('btnLista')
 let btnCarrito = document.getElementById('btnCarrito')
 let carritoSidebar = document.getElementById('productoAgregado')
+let btnEliminar = document.getElementById('btnEliminar')
+let carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
 
 
-
-
-btnCarrito.addEventListener('click', (e) => {
-  productoAgregado.classList.toggle("active")
-})
 
 let productoTotales = []
 
@@ -53,15 +50,14 @@ if (localStorage.getItem('Carrito')) {
   localStorage.setItem('Carrito', JSON.stringify(carrito))
 
 }
-
+//Agregar producto al carrito
 function agregarProducto(indice) {
+  carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
   let productosFilter = productoTotales.filter((element, index) => {
 
     return index == indice
   });
-  console.log(productosFilter);
-
-
+  carrito = carritoStorage
   carrito.push(productosFilter)
   Toastify({
 
@@ -72,53 +68,75 @@ function agregarProducto(indice) {
   }).showToast();
   localStorage.setItem('Carrito', JSON.stringify(carrito))
 
+  console.log(carritoStorage);
 }
 
+function mostrarProducto() {
+  carritoStorage.forEach((arrayCarrito, indice) => {
 
-btnCarrito.addEventListener('click', () => {
-  productoAgregado.innerHTML = ""
-  let carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
-  carritoStorage.forEach((arrayCarrito) => {
-    
-    arrayCarrito.forEach((productosCarrito, pEliminar) => {
-      let {
-        nombre,
-        marca,
-        precio,
-        stock
-      } = productosCarrito
-      
-      Swal.fire({
-        title:productoAgregado.innerHTML +=  `
+    let {
+      nombre,
+      marca,
+      precio,
+      stock
+    } = arrayCarrito[0]
+
+    productoAgregado.innerHTML += `
                 <div class="productosCarrito">
                 <ul>
                     <li>Nombre: ${nombre}</li>
                     <li>Marca: ${marca}</li>
                     <li>Precio:$ ${precio}</li>
-                    
+                    <li><button onClick="eliminarProducto(${indice})" >Eliminar</button></li>
               </ul>
                 </div>
-                `,
+                `
 
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Comprar',
-        denyButtonText: `Vaciar Carrito`,
-
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Compra Exitosa', '', 'success')
-          localStorage.setItem('Carrito', JSON.stringify(""))
-          productoAgregado.innerHTML = ""
-        } else if (result.isDenied) {
-          Swal.fire('Seguro que desea vaciar carrito', '', 'info')
-          localStorage.setItem('Carrito', JSON.stringify(""))
-          productoAgregado.innerHTML = ""
-        }
-      })
-
-    })
   })
+}
+
+//Mostrar Carrito
+
+btnCarrito.addEventListener('click', () => {
+
+  carritoStorage = JSON.parse(localStorage.getItem('Carrito'))
+  productoAgregado.classList.toggle("active")
+  productoAgregado.innerHTML = ""
+  mostrarProducto()
+  console.log(carritoStorage);
+
 })
 
+
+
+//Eliminar producto
+function eliminarProducto(indiceProducto) {
+  let productoEliminar = carritoStorage.filter((element, index) => {
+    return index !== indiceProducto
+  })
+  carritoStorage = productoEliminar
+  productoAgregado.innerHTML = ""
+  carritoStorage.forEach((arrayCarrito, indice) => {
+
+    let {
+      nombre,
+      marca,
+      precio,
+      stock
+    } = arrayCarrito[0]
+    productoAgregado.innerHTML += `
+              <div class="productosCarrito">
+              <ul>
+                  <li>Nombre: ${nombre}</li>
+                  <li>Marca: ${marca}</li>
+                  <li>Precio:$ ${precio}</li>
+                  <li><button onClick="eliminarProducto(${indice})" >Eliminar</button></li>
+            </ul>
+              </div>
+              `
+
+
+  })
+  localStorage.setItem('Carrito', JSON.stringify(carritoStorage))
+  console.log(carritoStorage);
+}
